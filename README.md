@@ -38,11 +38,11 @@ end program main
 ```  
 (Note that `!` starts a comment.) Then use a fortran compiler (e.g. `gfortran`) to compile the program.
 ```shell
-gfortran -o demo.o demo-code.f90
+gfortran -o demo.out demo-code.f90
 ```
-This creates an executable file `demo.o` which can subsequently be run.
+This creates an executable file `demo.out` which can subsequently be run.
 ```
-./demo.o                          # run code
+./demo.out                          # run code
   2
 ```
 Luckily, it gives the same result as `Julia`.
@@ -65,7 +65,7 @@ julia> @time f(2)
 ```
 Furthermore I will measure the spead directly from `Julia`. One can send commands to the shell using ```run(`echo Hello`)```.
 ```julia
-julia> @time run(`./a.out`)
+julia> @time run(`./demo.out`)
   2
   0.009107 seconds (31 allocations: 1.313 KB)
 ```
