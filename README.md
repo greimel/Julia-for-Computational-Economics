@@ -63,10 +63,15 @@ julia> @time f(2)
   0.000003 seconds (4 allocations: 160 bytes)
 2
 ```
-Furthermore I will measure the spead directly from `Julia`. One can send commands to the shell using ```run(`echo Hello`)```.
-```julia
-julia> @time run(`./demo.out`)
-  2
-  0.009107 seconds (31 allocations: 1.313 KB)
-```
+It is possible to call compiled `Fortran` functions in
+  `Julia`. Fortran time will be measured inside the Fortran function
+  an passed on to Julia.
+  
+  Description follows.
+<!-- Furthermore I will measure the spead directly from `Julia`. One can send commands to the shell using ```run(`echo Hello`)```.  -->
+<!-- ```julia -->
+<!-- julia> @time run(`./demo.out`) -->
+<!--   2 -->
+<!--   0.009107 seconds (31 allocations: 1.313 KB) -->
+<!-- ``` -->
 

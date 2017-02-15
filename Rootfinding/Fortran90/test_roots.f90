@@ -1,23 +1,37 @@
-
-
-program main
+module test_roots
   
   use constants
   use functions
   use rootfinding
- 
-  real(ndp) :: x = 2.0
-  real(ndp) :: xlow2, xhigh2, xlow3, xhigh3, toler
-  integer(i4b) :: i, iterations
-  logical :: verbose = .false.
+
+  implicit none
+contains
   
+  subroutine test(time, res2, res3, res4, verbose, toler, N)
+    
+  use constants
+  use functions
+  use rootfinding
+
+    
+  real(ndp) :: num, x = 2.0
+  real(ndp) :: xlow2, xhigh2, xlow3, xhigh3, toler
+  integer(i4b) :: i, iterations, N
+  logical :: verbose ! = .false.
+  integer :: time_start, time_end, rate
+  real(ndp) :: time
+            
   real(ndp) :: res2(3), res3(2), res4(2)
 
-  do i = 1,1000
+
+  call system_clock(COUNT_RATE=rate)
+  call system_clock(COUNT=time_start)
+  
+  do i = 1,N
      xlow2 = 0.001
      xhigh2 = 5
      iterations = 60
-     toler = 1d-10
+     !toler = 1d-10
 
      res2(1) = bisect(f2, xlow2, xhigh2, iterations, toler, verbose)
      res2(2) = newton(f2, f2p, xhigh2, iterations, toler, verbose)
@@ -40,5 +54,10 @@ program main
         write(6,"('f4: 'f15.8)") sum(res4)/2
      endif
   enddo
-
-  end program main
+  
+  call system_clock(COUNT=time_end)
+  time = time_end - time_start
+  time = time/rate
+end subroutine test
+  
+end module test_roots
